@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>عرض الاستهلاك</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>الاستهلاك اليومي للأجهزة</h2>
+  <ul id="list"></ul>
+
+  <script>
+    const list = document.getElementById("list");
+    let total = 0;
+
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      const val = parseFloat(localStorage.getItem(key));
+      total += val;
+      list.innerHTML += `<li>${key}: ${val.toFixed(2)} kWh</li>`;
+    }
+
+    list.innerHTML += `<hr><strong>الإجمالي اليومي: ${total.toFixed(2)} kWh</strong>`;
+  </script>
+</body>
+</html>

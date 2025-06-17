@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>إدخال بيانات الجهاز</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>إدخال بيانات الجهاز</h2>
+  <form id="deviceForm">
+    <input type="text" id="name" placeholder="اسم الجهاز" required><br>
+    <input type="number" id="power" placeholder="القدرة (واط)" required><br>
+    <input type="number" id="hours" placeholder="عدد الساعات يوميًا" required><br>
+    <button type="submit">حفظ البيانات</button>
+  </form>
+
+  <script>
+    document.getElementById("deviceForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const power = parseFloat(document.getElementById("power").value);
+      const hours = parseFloat(document.getElementById("hours").value);
+      const dailyKwh = (power * hours) / 1000;
+
+      localStorage.setItem(name, dailyKwh);
+      alert("تم حفظ الاستهلاك اليومي: " + dailyKwh.toFixed(2) + " kWh");
+    });
+  </script>
+</body>
+</html>
